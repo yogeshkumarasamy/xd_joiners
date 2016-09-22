@@ -1,3 +1,3 @@
-xdapp.controller("loginController",["$scope",$http,function(){
+xdapp.controller("loginController",["$scope","$http",function($scope,$http){
 
 }])
