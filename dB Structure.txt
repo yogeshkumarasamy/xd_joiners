@@ -1,0 +1,16 @@
+db Structure
+
+User
+=> User ID (AutoIncrement)
+=> UserName (email)
+=> Password
+=> Role
+=> contact_Number
+
+ToDolist
+
+=> tlist ID
+=> postBy (userId) - ForiegnKey
+=> post Description
+=> post_Status
+=> Update_by(userId)
