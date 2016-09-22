@@ -1,1 +1,1 @@
-var xdapp = angular.module("xdJoiner",[]);
+var xdapp = angular.module("xdJoiner",["ui.router"]);
