@@ -1,1 +1,10 @@
-<p>Login Page</p>
+
+<div ng-controller="loginController as authCtrl"
+    <p>Login Page</p> <p>form valid : {{loginForm.$valid }}</p>
+    <form name="loginForm" novalidate ng-submit="loginForm.$valid && authCtrl.authLogin()"
+        <label>User Name</label>
+        <input type="email" ng-model="authCtrl.userName" name="login_username" placeholder="username@domain.com" required />
+        <label>Password</label>
+        <input type="password" ng-model="authCtrl.userPassword" name="login_password" placeholder="******" min=6 required />
+        <input type="submit" value="Login" class="button primary" />
+        <a ui-sref="forgetPassword">Forget Password ?</a>
