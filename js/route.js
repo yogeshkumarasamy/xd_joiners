@@ -9,6 +9,10 @@ xdapp.config(function($stateProvider, $urlRouterProvider) {
             url: '/register',
             templateUrl: 'template/register.html',
             controller: 'RegistrationController'
+        }).state('forgetPassword', {
+            url: '/forgetPassword',
+            templateUrl: 'template/forget_Password.html',
+            controller: 'RegistrationController'
         });
         
 });
