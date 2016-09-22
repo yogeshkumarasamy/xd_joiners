@@ -1,10 +1,37 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="images/logo.png" alt="" title=""></a>
+    </div>
 
-<div ng-controller="loginController as authCtrl"
-    <p>Login Page</p> <p>form valid : {{loginForm.$valid }}</p>
-    <form name="loginForm" novalidate ng-submit="loginForm.$valid && authCtrl.authLogin()"
-        <label>User Name</label>
-        <input type="email" ng-model="authCtrl.userName" name="login_username" placeholder="username@domain.com" required />
-        <label>Password</label>
-        <input type="password" ng-model="authCtrl.userPassword" name="login_password" placeholder="******" min=6 required />
-        <input type="submit" value="Login" class="button primary" />
-        <a ui-sref="forgetPassword">Forget Password ?</a>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      </ul>
+     </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container register-wrp">
+
+	<div class="col-md-6 col-sm-8 col-xs-12 ex-center">
+		<div class="field-wrp">
+		<h2>Login</h2>
+			<input type="text" placeholder="Email">
+			<input type="password" placeholder="Password">
+			<input type="submit" value="Login" class="register-sub">
+			<p><a ng-href="#/register">Click Here to Register </a></p>
+		</div>
+	</div>
+
+</div>
+
+<footer></footer>
