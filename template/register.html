@@ -1,4 +1,5 @@
-<div ng-controller="registerController as regCtrl">
-    <p>register Page</p>
-    <input type="text" ng-model="regCtrl.userName">
-    <input type="submit" ng-click="regCtrl.regUser()"></div>
+<p>{{msg}}</p>
+<form action="" ng-submit="saveUser()">
+	<input type="text" ng-model="user.name">
+	<input type="submit">
+</form>
