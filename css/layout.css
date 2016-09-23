@@ -62,3 +62,66 @@ footer {
     display: block;
     text-decoration: none;
 }
+
+
+/* Login New Css */
+.login-wrapper input {
+    width: 100%;
+    margin: 8px 0;
+    height: 32px;
+    border: 0;
+    padding: 10px;
+    box-shadow: #aeaeae 2px 3px 7px;
+  
+}
+
+.login-container {
+    background: url(../images/login/background.jpg);
+    background-size: cover;
+    height:100vh;
+    overflow: hidden;
+    overflow-y : auto;
+    transition : width 0.5s ease;
+}
+
+ .login-wrapper {
+    width: 30%;
+    margin: 0 auto;
+    background: rgba(234, 234, 234, 0.4);
+    padding: 2%;
+    margin-top: 10%;
+    border-radius: 20px;
+}
+.logo-container IMG {
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+p.forgetPass {
+    text-align: right;
+}
+.signIn h3 {
+    text-align: center;
+    font-weight: 700;
+    border-top: 1px solid #797979;
+    padding-top: 4%;
+}
+p.sign-link {
+    margin-top: 20px;
+}
+p.sign-link a {
+    text-decoration: underline;
+    font-weight:700;
+    font-size:1.5rem;
+    color:#000;
+    }
+
+    .forgetPass a{
+        color:#000;
+        font-weight:700;
+    }
+
+
+
+

@@ -1,0 +1,32 @@
+<div class="contaioner-fluid login-container">
+    <div class = "row" >
+    <div class="login-wrapper">
+        <div class="logo-container">
+            <img src="images/logoBlack.png"/>
+        </div>
+<div class="signUp"> 
+                <form action="" ng-submit="saveUser()">
+		          <div class="">
+		            <h3>Register</h3>
+			    
+			    <input type="text" placeholder="Name" ng-model="user.name" class="form-control">
+			    <input type="text" placeholder="Email" ng-model="user.email" class="form-control">
+                <!--<select ng-model="user.role" class="form-control">
+			       <option selected="selected">--Select Role--</option>
+			       <option value="supervisor">Supervisor</option>
+			       <option value="joiner">New Joiners</option>
+			    </select>-->
+			    <input type="text" placeholder="Contact Number" ng-model="user.number" class="form-control">
+			    <input type="password" placeholder="Password" ng-model="user.pwd" class="form-control">
+                <input type="password" placeholder="Re-Type Password" class="form-control">
+			    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                 <p class="sign-link text-center">Existing User <a ui-sref="signin">Sign In</a></p>
+		        </div>
+	         </form>
+          
+        </div>
+    </div>
+
+</div>
+
+</div>
