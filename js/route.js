@@ -1,8 +1,8 @@
-xdapp.config(function($stateProvider, $urlRouterProvider) {    
-    $urlRouterProvider.otherwise('/login_new/signin');    
-    $stateProvider        
+xdapp.config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/signin');
+    $stateProvider
         // Login View
-  
+
         .state('signin', {
             url: '/signin',
             templateUrl: 'template/login/signIn.html'
@@ -20,5 +20,5 @@ xdapp.config(function($stateProvider, $urlRouterProvider) {
             url: '/login',
             templateUrl: 'template/login.html'
         })
-        
+
 });

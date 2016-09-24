@@ -8,9 +8,18 @@
 	<link rel="stylesheet" href="css/layout.css">
 	<link rel="stylesheet" href="css/responsive-layout.css">
 	<script src="js/lib/angular.min.js"></script>
-	<script src="js/lib/uiRouter.min.js"></script>
-	<!-- Firebase -->
-<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBaZB0-PIEM9L7iQvQo4w8x6iXSk-Ix9r8",
+      authDomain: "xdnewjoiner.firebaseapp.com",
+      databaseURL: "https://xdnewjoiner.firebaseio.com",
+      storageBucket: "xdnewjoiner.appspot.com",
+      messagingSenderId: "67271362290"
+    };
+    firebase.initializeApp(config);
+  </script>
 <!-- AngularFire -->
 <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
 </head>
