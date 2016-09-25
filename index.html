@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="css/layout.css">
 	<link rel="stylesheet" href="css/responsive-layout.css">
 	<script src="js/lib/angular.min.js"></script>
+	<script src="js/lib/uiRouter.min.js"></script>
+  <!-- <script src="js/lib/roundProgress.js"></script> -->
+	<!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
   <script>
     // Initialize Firebase
@@ -16,12 +19,13 @@
       authDomain: "xdnewjoiner.firebaseapp.com",
       databaseURL: "https://xdnewjoiner.firebaseio.com",
       storageBucket: "xdnewjoiner.appspot.com",
-      messagingSenderId: "67271362290"
+      messagingSenderId: "67271362290",
+      mode:"select"
     };
     firebase.initializeApp(config);
   </script>
 <!-- AngularFire -->
-<script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/2.0.2/angularfire.min.js"></script>
 </head>
 <body ng-app="xdJoiner">
 <div ui-view></div>

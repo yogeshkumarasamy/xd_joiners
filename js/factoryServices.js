@@ -1,10 +1,11 @@
 xdapp.factory("fireFactory",['$firebaseObject', '$firebaseAuth','$firebaseArray',
     function($firebaseObject,$firebaseAuth,$firebaseArray){
-      var db_ref = new firebase("https://xdnewjoiner.firebaseio.com/");
-      var usr_ref = new firebase("https://xdnewjoiner.firebaseio.com/users");
+     var db_ref = firebase.database().ref();
       return{
-        authRef : function(){return($firebaseAuth(db_ref));},
+        authRef : function(){
+          return($firebaseAuth())
+        },
         arrayRef : function(){return ($firebaseArray(db_ref));},
-        userRef : function(){return ($firebaseArray(usr_ref));},
+
       }
 }])

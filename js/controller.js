@@ -1,41 +1,46 @@
 
-xdapp.controller("loginController", ["$scope", "$http", function($scope, $http) {
+xdapp.controller('loginController', ['$scope','fireFactory', '$http', function($scope,fireFactory,$http) {
+  $scope.usrAuth = function(){
+    try{
+    console.log("auth USer");
+    console.log($scope.usr.Name+$scope.usr.Pwd);
+    var authObj = fireFactory.authRef();
+    authObj.$signInAnonymously()
+    // authObj.$signInWithEmailAndPassword("suresh@gmail.com","suresh")
+    .then(function(user){
+       console.log("sigin in success as ");
+      console.log(user);
+
+    }).catch(function(error){})
+  }
+
+    catch(error){
+     console.log("Signin Error" + error.message);
+    }
+
+  }
 
 }]);
 
-xdapp.controller('RegistrationController', ['$scope','fireFactory', function($scope,fireFactory) {
+xdapp.controller('RegistrationController', ['$scope','fireFactory','$location',function($scope,fireFactory,$location) {
+    $scope.regError ="test";
     $scope.msg = "I am in RegistrationController";
-    console.log($scope.msg);
-$scope.authObj = fireFactory.authRef();
-    console.log($scope.authObj);
+    var authObj = fireFactory.authRef();
     $scope.registerUser = function() {
-        console.log($scope.authObj);
-        console.log($scope.user);
-      $scope.authObj.$createUser({
-                role: $scope.user.role,
-                name: $scope.user.name,
-                email: $scope.user.email,
-                phone: $scope.user.number,
-                password:$scope.user.pwd
-            }).then(function(userData) {
-              console.log (userData);
-                var userRef = new Firebase("https://xdnewjoiner.firebaseio.com/users");
-                var id = userData.uid;
-                var addUser = userRef.child(id);
-                console.log($scope.user);
-                addUser.set({
-                    role: $scope.user.role,
-                    name: $scope.user.name,
-                    email: $scope.user.email,
-                    phone: $scope.user.number,
-                    password:$scope.user.pwd
-
-                })
-            }).then(function(){
-             alert ("User Created Successfully!!!");
-            })
-            .catch(function(error) {
-                console.error("Error: ", error);
-            });
+      try{
+      authObj.$createUserWithEmailAndPassword($scope.user.email,$scope.user.pwd)
+       .then(function(userData){
+            alert ("User Created Successfully!!!");
+             $scope.user.id = userData.uid;
+             $scope.user.role = "new";
+             $scope.userElement = firebase.database().ref('/userBase/'+ userData.uid);
+             $scope.userElement.set($scope.user);
+           }).then(function(){
+             $location.path('/signin')
+           })
+         }
+        catch(error) {
+          $scope.regError = error.message;
+            };
     }
 }])

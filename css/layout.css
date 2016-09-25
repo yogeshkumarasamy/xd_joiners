@@ -72,7 +72,7 @@ footer {
     border: 0;
     padding: 10px;
     box-shadow: #aeaeae 2px 3px 7px;
-  
+
 }
 
 .login-container {
@@ -122,6 +122,6 @@ p.sign-link a {
         font-weight:700;
     }
 
-
-
-
+    input.ng-dirty.ng-invalid {
+        border: 1px solid red;
+    }

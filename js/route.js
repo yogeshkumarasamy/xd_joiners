@@ -5,7 +5,8 @@ xdapp.config(function($stateProvider, $urlRouterProvider) {
 
         .state('signin', {
             url: '/signin',
-            templateUrl: 'template/login/signIn.html'
+            templateUrl: 'template/login/signIn.html',
+            controller : 'loginController'
         })
         .state('signup', {
             url: '/signup',
