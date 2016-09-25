@@ -125,3 +125,27 @@ p.sign-link a {
     input.ng-dirty.ng-invalid {
         border: 1px solid red;
     }
+
+  /* Dashboard Css */
+  .dash-title-bar {
+    background: #F97705;
+    color: #fff;
+    padding: 20px;
+}
+.dash-left-bar .nav {
+    background: #3a3a3a;
+    height: 100vw;
+}
+.dash-left-bar .nav li a {
+    color: #fff;
+    font-size: 17px;
+    padding: 20px;
+    border-bottom: 1px solid #fff;
+}
+.dash-left-bar .nav li a:hover {
+    background: #aeaeae;
+    color: #3a3a3a;
+}
+.user-name-sec {
+    font-size: 16px;
+}

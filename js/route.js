@@ -17,6 +17,11 @@ xdapp.config(function($stateProvider, $urlRouterProvider) {
             url: '/forgetPassword',
             templateUrl: 'template/login/forgetPassword.html'
         })
+        .state('dashboard', {
+            url: '/dashboard',
+            templateUrl: 'template/dashboard/dashboard.html',
+            controller : 'loginController'
+        })
         .state('login', {
             url: '/login',
             templateUrl: 'template/login.html'
