@@ -149,3 +149,20 @@ p.sign-link a {
 .user-name-sec {
     font-size: 16px;
 }
+ul.nav.list-unstyled .glyphicon {
+    padding-right: 20px;
+}
+.dash-notify .glyphicon {
+    margin: 0 10px;
+}
+
+.progress-wrapper {
+    position: relative;
+}
+.progress{
+    position: absolute;
+}
+.dash-status-card {
+    text-align: center;
+    padding: 20px;
+}

@@ -1,1 +1,1 @@
-var xdapp = angular.module("xdJoiner", ["ui.router", "firebase"]);
+var xdapp = angular.module("xdJoiner", ['angular-svg-round-progressbar','ui.router', 'firebase']);
