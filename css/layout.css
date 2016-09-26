@@ -127,6 +127,9 @@ p.sign-link a {
     }
 
   /* Dashboard Css */
+  .dash-left-bar {
+    padding: 0;
+}
   .dash-title-bar {
     background: #F97705;
     color: #fff;

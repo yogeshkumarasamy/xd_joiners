@@ -10,7 +10,7 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
     authObj.$signInWithEmailAndPassword($scope.usr.Name,$scope.usr.Pwd)
     .then(function(user){
        console.log("sigin in success as " + $scope.usr.Name);
-       $location.path("/dashboard");
+       $location.path("/dashboard/status");
        console.log(user);
     }).catch(function(error){
     })

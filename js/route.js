@@ -20,11 +20,19 @@ xdapp.config(function($stateProvider, $urlRouterProvider) {
         .state('dashboard', {
             url: '/dashboard',
             templateUrl: 'template/dashboard/dashboard.html',
-            controller : 'loginController'
+            controller : 'DashController',
+            redirectTo: 'dashboard.main'
         })
-        .state('login', {
-            url: '/login',
-            templateUrl: 'template/login.html'
+        .state('dashboard.status', {
+            url: '/status',
+            templateUrl: 'template/dashboard/main_content.html',
+            controller : 'DashController'
         })
+        .state('dashboard.new_task', {
+            url: '/new_task',
+            templateUrl: 'template/dashboard/new_task.html',
+            controller : 'DashController'
+        })
+
 
 });

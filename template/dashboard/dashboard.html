@@ -1,5 +1,5 @@
 <div class="contaioner-fluid dash-container" ng-controller='DashController'>
-    <div class = "row" >
+
     <div class="dash-wrapper">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dash-title-bar">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 user-name-sec">
@@ -17,112 +17,21 @@
 
       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 dash-left-bar">
         <ul class="nav list-unstyled">
-            <li><a><span class="glyphicon glyphicon-th-list"></span>Task</a></li>
+            <li>
+              <a ui-sref="dashboard.status"><span class="glyphicon glyphicon-th-list"></span>Task</a>
+              <ul>
+                <li><a ui-sref='dashboard.new_task'>Create Task</a><li>
+                </ul>
+
+            </li>
             <li><a><span class="glyphicon glyphicon-envelope"></span>Messages</a></li>
             <li><a><span class="glyphicon glyphicon-cog"></span>Settings</a></li>
         </ul>
 
       </div>
-
-      <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 dash-view">
-        <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 dash-status-card">
-          <h4>Mandatory Task</h4>
-        <div class="progress-wrapper">
-            <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}/{{ max }}</div>
-            <round-progress
-                max="max"
-                current="current"
-                color="{{ getColor() }}"
-                bgcolor="{{ bgColor }}"
-                radius="{{ radius }}"
-                semi="isSemi"
-                rounded="rounded"
-                stroke="{{ stroke }}"
-                clockwise="clockwise"
-                responsive="responsive"
-                duration="{{ duration }}"
-                animation="{{ currentAnimation }}"
-                offset="{{ offset }}"
-                animation-delay="{{ animationDelay }}"
-                on-render="showPreciseCurrent">
-
-                <svg>
-                    <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="5%"  stop-color="green"/>
-                        <stop offset="95%" stop-color="gold"/>
-                    </linearGradient>
-                </svg>
-            </round-progress>
-        </div>
-      </div>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 dash-status-card">
-        <h4>Additional Task</h4>
-      <div class="progress-wrapper">
-          <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}/{{ max }}</div>
-          <round-progress
-              max="max"
-              current="current"
-              color="{{ getColor() }}"
-              bgcolor="{{ bgColor }}"
-              radius="{{ radius }}"
-              semi="isSemi"
-              rounded="rounded"
-              stroke="{{ stroke }}"
-              clockwise="clockwise"
-              responsive="responsive"
-              duration="{{ duration }}"
-              animation="{{ currentAnimation }}"
-              offset="{{ offset }}"
-              animation-delay="{{ animationDelay }}"
-              on-render="showPreciseCurrent">
-
-              <svg>
-                  <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-                      <stop offset="5%"  stop-color="green"/>
-                      <stop offset="95%" stop-color="gold"/>
-                  </linearGradient>
-              </svg>
-          </round-progress>
-      </div>
-    </div>
-
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 dash-status-card">
-      <h4>other Task</h4>
-    <div class="progress-wrapper">
-        <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}/{{ max }}</div>
-        <round-progress
-            max="max"
-            current="current"
-            color="{{ getColor() }}"
-            bgcolor="{{ bgColor }}"
-            radius="{{ radius }}"
-            semi="isSemi"
-            rounded="rounded"
-            stroke="{{ stroke }}"
-            clockwise="clockwise"
-            responsive="responsive"
-            duration="{{ duration }}"
-            animation="{{ currentAnimation }}"
-            offset="{{ offset }}"
-            animation-delay="{{ animationDelay }}"
-            on-render="showPreciseCurrent">
-
-            <svg>
-                <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="5%"  stop-color="green"/>
-                    <stop offset="95%" stop-color="gold"/>
-                </linearGradient>
-            </svg>
-        </round-progress>
-    </div>
-  </div>
-</div>
-<div class="row">
-         <div ui-view > </div>
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 dash-view">
+         <div ui-view></div>
        </div>
-      </div>
-
     </div>
-</div>
+
 </div>
