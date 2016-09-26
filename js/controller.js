@@ -2,55 +2,62 @@
 xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location', function($scope,fireFactory,$http,$location) {
 
   $scope.usrAuth = function(){
-    $location.path("/dashboard");
+
     try{
     console.log("auth USer");
     console.log($scope.usr.Name+$scope.usr.Pwd);
     var authObj = fireFactory.authRef();
-    authObj.$signInAnonymously()
-    // authObj.$signInWithEmailAndPassword("suresh@gmail.com","suresh")
+    authObj.$signInWithEmailAndPassword($scope.usr.Name,$scope.usr.Pwd)
     .then(function(user){
-       console.log("sigin in success as ");
-      console.log(user);
-
-    }).catch(function(error){})
+       console.log("sigin in success as " + $scope.usr.Name);
+       $location.path("/dashboard");
+       console.log(user);
+    }).catch(function(error){
+    })
   }
 
     catch(error){
-     console.log("Signin Error" + error.message);
-    }
+     console.log( error);
+    };
 
   }
 
 }]);
 
-xdapp.controller('RegistrationController', ['$scope','fireFactory','$location',function($scope,fireFactory,$location) {
+xdapp.controller('RegistrationController', ['$scope','fireFactory','$location','Profile',function($scope,fireFactory,$location,Profile) {
+  $scope.user = {};
     $scope.regError ="test";
     $scope.msg = "I am in RegistrationController";
     var authObj = fireFactory.authRef();
+
     $scope.registerUser = function() {
+          console.log($scope.user.email +"pwd" + $scope.user.pwd);
       try{
       authObj.$createUserWithEmailAndPassword($scope.user.email,$scope.user.pwd)
-       .then(function(userData){
-            alert ("User Created Successfully!!!");
-             $scope.user.id = userData.uid;
-             $scope.user.role = "new";
-             $scope.userElement = firebase.database().ref('/userBase/'+ userData.uid);
-             $scope.userElement.set($scope.user);
-           }).then(function(){
+       .then(function(response){
+         $scope.user.id = response.uid;
+         $scope.user.role = "new";
+         Profile.pushProfile(response,$scope.user);
+           })
+        .then(function(){
              $location.path('/signin')
            })
          }
         catch(error) {
+            console.log(error);
           $scope.regError = error.message;
             };
     }
 }])
 
 xdapp.controller('DashController',['$scope', '$interval', '$timeout', '$window',
-     'roundProgressService',function($scope, $interval, $timeout, $window, roundProgressService){
+     'roundProgressService','fireFactory','Profile',function($scope, $interval, $timeout, $window, roundProgressService,fireFactory,Profile){
 
-
+         $scope.auth = fireFactory.authRef();
+         $scope.userProfile = {};
+         $scope.auth.$onAuthStateChanged(function(response){
+             $scope.userProfile = Profile.getProfile(response.uid);
+         });
            $scope.current =        27;
            $scope.max =            50;
            $scope.offset =         0;
@@ -87,13 +94,11 @@ xdapp.controller('DashController',['$scope', '$interval', '$timeout', '$window',
                    }
                });
            };
-
            var getPadded = function(val){
                return val < 10 ? ('0' + val) : val;
            };
            $scope.getStyle = function(){
                var transform = ($scope.isSemi ? '' : 'translateY(-50%) ') + 'translateX(-50%)';
-
                return {
                    'top': $scope.isSemi ? 'auto' : '50%',
                    'bottom': $scope.isSemi ? '5%' : 'auto',
@@ -104,8 +109,6 @@ xdapp.controller('DashController',['$scope', '$interval', '$timeout', '$window',
                    'font-size': $scope.radius/6 + 'px'
                };
            };
-
-
            $interval(function(){
                var date = new Date();
                var hours = date.getHours();
