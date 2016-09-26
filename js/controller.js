@@ -1,6 +1,8 @@
 
-xdapp.controller('loginController', ['$scope','fireFactory', '$http', function($scope,fireFactory,$http) {
+xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location', function($scope,fireFactory,$http,$location) {
+
   $scope.usrAuth = function(){
+    $location.path("/dashboard");
     try{
     console.log("auth USer");
     console.log($scope.usr.Name+$scope.usr.Pwd);
