@@ -1,3 +1,8 @@
+/* bootstrap class override */
+.btn {
+    padding: 5px 40px!important;
+}
+
 .navbar-default {
     border: none;
     background-color: #ff5800;
@@ -44,8 +49,8 @@
 .register-sub {
     background-color: #999;
     color: #fff;
-}
 
+  }
 .register-sub:hover {
     background-color: #333;
 }
@@ -168,4 +173,11 @@ ul.nav.list-unstyled .glyphicon {
 .dash-status-card {
     text-align: center;
     padding: 20px;
+}
+.task_Container input, .task_Container textarea, .task_Container select {
+    margin: 10px 0;
+    width:100%;
+}
+.task_Container textarea{
+  height:150px
 }

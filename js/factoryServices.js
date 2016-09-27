@@ -14,25 +14,26 @@ xdapp.factory("fireFactory",['$firebaseObject', '$firebaseAuth','$firebaseArray'
       return $firebaseObject(db_ref.child('userBase').child(id));
     },
     pushProfile : function(response,user){
-      console.log ("User Created Successfully!!!");
       this.userElement = firebase.database().ref('/userBase/'+ response.uid);
-      console.log()
       this.userElement.set(user);
     }
   }
 
-}]).
-factory('Task',['$firebaseObject',function($firebaseObject){
+}])
+.factory('Task',['$firebaseObject',function($firebaseObject){
 
   return{
+
     pushTask : function(data){
        var id;
       this.parentElement = firebase.database().ref('/taskList');
-        this.id = this.parentElement.transaction(function(currentIndex){ id = currentIndex+1;});
-      console.log(id);
-      this.taskElement = firebase.database().ref('/taskList/'+id);
-      this.taskElement.set(data);
+       this.parentElement.once("value", function(snapshot) {
+             id = snapshot.numChildren() + 1;
+                  }).then(function(){
+        this.taskElement = firebase.database().ref('/taskList/'+id);
+        this.taskElement.set(data);
+     });
     }
-  }
 
+  }
 }])

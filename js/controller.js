@@ -57,7 +57,7 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
                $scope.userProfile = Profile.getProfile(response.uid);
            });
 
-
+$state.go("dashboard.status");
 
 }])
 
@@ -134,17 +134,20 @@ $scope.userProfile ={}
 }])
 .controller('createTaskController',['$scope','fireFactory','Task',function($scope,fireFactory,Task){
 $scope.Task={};
+$scope.task_option =["mandatory","additional","others"];
+$scope.Task.category = $scope.task_option[0];
+$scope.feildReset = function(){
+  $scope.Task={};
+}
   $scope.createTask = function() {
       console.log("createTask");
       console.log($scope.Task);
     try{
-
        Task.pushTask($scope.Task);
-
+        $scope.feildReset();
        }
       catch(error) {
           console.log(error);
-
           };
   }
 
