@@ -16,7 +16,22 @@ xdapp.factory("fireFactory",['$firebaseObject', '$firebaseAuth','$firebaseArray'
     pushProfile : function(response,user){
       console.log ("User Created Successfully!!!");
       this.userElement = firebase.database().ref('/userBase/'+ response.uid);
+      console.log()
       this.userElement.set(user);
+    }
+  }
+
+}]).
+factory('Task',['$firebaseObject',function($firebaseObject){
+
+  return{
+    pushTask : function(data){
+       var id;
+      this.parentElement = firebase.database().ref('/taskList');
+        this.id = this.parentElement.transaction(function(currentIndex){ id = currentIndex+1;});
+      console.log(id);
+      this.taskElement = firebase.database().ref('/taskList/'+id);
+      this.taskElement.set(data);
     }
   }
 

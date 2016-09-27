@@ -26,12 +26,12 @@ xdapp.config(function($stateProvider, $urlRouterProvider) {
         .state('dashboard.status', {
             url: '/status',
             templateUrl: 'template/dashboard/main_content.html',
-            controller : 'DashController'
+            controller : 'statusController'
         })
         .state('dashboard.new_task', {
             url: '/new_task',
             templateUrl: 'template/dashboard/new_task.html',
-            controller : 'DashController'
+            controller : 'createTaskController'
         })
 
 

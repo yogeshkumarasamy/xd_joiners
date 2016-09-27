@@ -22,9 +22,9 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
 
   }
 
-}]);
+}])
 
-xdapp.controller('RegistrationController', ['$scope','fireFactory','$location','Profile',function($scope,fireFactory,$location,Profile) {
+.controller('RegistrationController', ['$scope','fireFactory','$location','Profile',function($scope,fireFactory,$location,Profile) {
   $scope.user = {};
     $scope.regError ="test";
     $scope.msg = "I am in RegistrationController";
@@ -49,10 +49,21 @@ xdapp.controller('RegistrationController', ['$scope','fireFactory','$location','
             };
     }
 }])
+.controller('DashController',['$scope','$state','fireFactory','Profile',function($scope,$state,fireFactory,Profile){
+  $scope.userProfile ={}
+           $scope.auth = fireFactory.authRef();
+           $scope.userProfile = {};
+           $scope.auth.$onAuthStateChanged(function(response){
+               $scope.userProfile = Profile.getProfile(response.uid);
+           });
 
-xdapp.controller('DashController',['$scope', '$interval', '$timeout', '$window',
+
+
+}])
+
+.controller('statusController',['$scope', '$interval', '$timeout', '$window',
      'roundProgressService','fireFactory','Profile',function($scope, $interval, $timeout, $window, roundProgressService,fireFactory,Profile){
-
+$scope.userProfile ={}
          $scope.auth = fireFactory.authRef();
          $scope.userProfile = {};
          $scope.auth.$onAuthStateChanged(function(response){
@@ -120,4 +131,21 @@ xdapp.controller('DashController',['$scope', '$interval', '$timeout', '$window',
                $scope.seconds = seconds;
                $scope.time = getPadded(hours) + ':' + getPadded(minutes) + ':' + getPadded(seconds);
            }, 1000);
+}])
+.controller('createTaskController',['$scope','fireFactory','Task',function($scope,fireFactory,Task){
+$scope.Task={};
+  $scope.createTask = function() {
+      console.log("createTask");
+      console.log($scope.Task);
+    try{
+
+       Task.pushTask($scope.Task);
+
+       }
+      catch(error) {
+          console.log(error);
+
+          };
+  }
+
 }])
