@@ -141,6 +141,7 @@ $scope.task_option =["mandatory","additional","others"];
 $scope.Task.category = $scope.task_option[0];
 $scope.feildReset = function(){
   $scope.Task={};
+  $scope.Task.category = $scope.task_option[0];
 }
   $scope.createTask = function() {
       console.log("createTask");

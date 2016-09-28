@@ -186,6 +186,7 @@ ul.nav.list-unstyled .glyphicon {
     background: #eaeaea;
     margin: 5px;
     border-radius: 6px;
+    position: relative;
 }
 ul.task-list {
     padding: 0;
@@ -205,4 +206,40 @@ input.task-search {
 }
 ul.task-list li.active {
     border-bottom: 2px solid #f97705;
+}
+ul.task-list li a {
+    text-decoration: none;
+}
+ul.task-list li a:hover {
+    color: #f97705;
+}
+.card-block.mandatory {
+    background: #ff0000;
+    color: #ffffff;
+}
+.card-block.additional {
+    background: #f97705;
+}
+.card-block.others {
+    background: #45ccce;
+}
+a.rounded_button {
+    width: 40px;
+    background: #fff;
+    padding: 5px;
+    border-radius: 50%;
+    color: #000;
+    box-shadow: 2px 1px 8px rgba(21, 20, 20, 0.47);
+    position: absolute;
+    height: 40px;
+    text-align: center;
+    top: 23%;
+    right: 4%;
+    cursor: auto;
+}
+a.rounded_button:hover {
+    box-shadow: none;
+}
+a.rounded_button span.glyphicon.glyphicon-ok{
+  margin:5px;
 }
