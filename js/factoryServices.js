@@ -20,15 +20,16 @@ xdapp.factory("fireFactory",['$firebaseObject', '$firebaseAuth','$firebaseArray'
   }
 
 }])
-.factory('Task',['$firebaseObject',function($firebaseObject){
+.factory('Task',['$firebaseObject','$firebaseArray',function($firebaseObject,$firebaseArray){
 
   return{
     getTask : function (){
-      return $firebaseObject(db_ref.child('taskList'));
+      return $firebaseArray(db_ref.child('taskList'));
     },
 
     pushTask : function(data){
        var id;
+       data.status = "new";
       this.parentElement = firebase.database().ref('/taskList');
        this.parentElement.once("value", function(snapshot) {
              id = snapshot.numChildren() + 1;

@@ -63,7 +63,7 @@ $state.go("dashboard.status");
 
 .controller('statusController',['$scope', '$interval', '$timeout', '$window','roundProgressService','fireFactory','Profile','Task',function($scope,$interval, $timeout, $window, roundProgressService,fireFactory,Profile,Task){
         $scope.userProfile ={};
-        
+        $scope.taskCategory = "mandatory";
         $scope.totalTask = Task.getTask();
         console.log("task obj");
         console.log($scope.totalTask );

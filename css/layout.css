@@ -187,3 +187,22 @@ ul.nav.list-unstyled .glyphicon {
     margin: 5px;
     border-radius: 6px;
 }
+ul.task-list {
+    padding: 0;
+}
+ul.task-list li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+input.task-search {
+    width: 100%;
+    min-height: 32px;
+    margin: 10px;
+}
+ul.task-list li.active {
+    border-bottom: 2px solid #f97705;
+}

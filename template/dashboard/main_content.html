@@ -92,17 +92,17 @@
 </div>
 
 <div class="task-list-contaoner col-xs-12 col-sm-12 col-md-12 col-lg-12">
-  <ul class="">
+  <ul class="task-list">
 
-    <li><a data-toggle="tab">Mandatory Task</a></li>
-     <li><a data-toggle="tab">Additional Task</a></li>
-      <li><a data-toggle="tab">Other Task</a></li>
-      <li class="active"><a data-toggle="tab">All</a></li>
+    <li ng-class="{'active' : taskCategory=='mandatory'}"><a data-toggle="tab" ng-click = "taskCategory='mandatory'">Mandatory Task</a></li>
+     <li ng-class="{'active' : taskCategory=='additional'}"><a data-toggle="tab"  ng-click = "taskCategory='additional'" >Additional Task</a></li>
+      <li ng-class="{'active' : taskCategory=='others'}"><a data-toggle="tab"  ng-click = "'taskCategory=others'" >Other Task</a></li>
+      <li ng-class="{'active' : taskCategory==''}"><a data-toggle="tab" ng-click = "taskCategory=''">All</a></li>
   </ul>
 
-  <input type ="text" ng-model = "searchTask.text" >
+  <input type ="text" ng-model = "searchTaskName" placeholder = "Search For Task" class="task-search" >
 <div class = "cardContainer">
-  <div class="card" ng-repeat = "rows in totalTask">
+  <div class="card" ng-repeat = "rows in totalTask | filter : searchTaskName | filter : taskCategory"   >
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ">
 <div class="card-block" >
   <h4 class="card-title">{{rows.name }}</h4>
