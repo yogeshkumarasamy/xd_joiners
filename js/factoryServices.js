@@ -23,6 +23,9 @@ xdapp.factory("fireFactory",['$firebaseObject', '$firebaseAuth','$firebaseArray'
 .factory('Task',['$firebaseObject',function($firebaseObject){
 
   return{
+    getTask : function (){
+      return $firebaseObject(db_ref.child('taskList'));
+    },
 
     pushTask : function(data){
        var id;

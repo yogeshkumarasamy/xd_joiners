@@ -181,3 +181,9 @@ ul.nav.list-unstyled .glyphicon {
 .task_Container textarea{
   height:150px
 }
+.card-block {
+    padding: 5px 10px;
+    background: #eaeaea;
+    margin: 5px;
+    border-radius: 6px;
+}
