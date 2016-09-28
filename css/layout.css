@@ -243,3 +243,7 @@ a.rounded_button:hover {
 a.rounded_button span.glyphicon.glyphicon-ok{
   margin:5px;
 }
+.card-block p {
+    min-height: 40px;
+    padding-right: 40px;
+}

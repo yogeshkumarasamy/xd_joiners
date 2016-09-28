@@ -6,7 +6,7 @@
       <round-progress
           max="max"
           current="current"
-          color="{{ getColor() }}"
+          color="#ff0000"
           bgcolor="{{ bgColor }}"
           radius="{{ radius }}"
           semi="isSemi"
@@ -36,7 +36,7 @@
     <round-progress
         max="max"
         current="current"
-        color="{{ getColor() }}"
+        color="#F97705"
         bgcolor="{{ bgColor }}"
         radius="{{ radius }}"
         semi="isSemi"
@@ -103,11 +103,11 @@
   <input type ="text" ng-model = "searchTaskName" placeholder = "Search For Task" class="task-search" >
 <div class = "cardContainer">
   <div class="card" ng-repeat = "(key , rows) in totalTask | filter : searchTaskName | filter : taskCategory"   >
-  <div ng-if="rows.status == 'new'" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
+  <div  ng-hide="rows.hide" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
   <div class="card-block {{rows.category }}" >
   <h4 class="card-title">{{rows.name }}</h4>
   <p class="card=text">{{rows.desc}}</p>
-  <a class="rounded_button" ><span class="glyphicon glyphicon-ok"></span> </a>
+  <a class="rounded_button"  ng-click= "pushUserTask(rows)"><span class="glyphicon glyphicon-ok"></span> </a>
 </div>
 </div>
   </div>

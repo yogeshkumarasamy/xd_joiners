@@ -1,5 +1,6 @@
 
-xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location', function($scope,fireFactory,$http,$location) {
+xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location','Profile',
+   function($scope,fireFactory,$http,$location,Profile) {
 
   $scope.usrAuth = function(){
 
@@ -12,6 +13,7 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
        console.log("sigin in success as " + $scope.usr.Name);
        $location.path("/dashboard/status");
        console.log(user);
+       Profile.currentUser = user.uid;
     }).catch(function(error){
     })
   }
@@ -55,13 +57,26 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
            $scope.userProfile = {};
            $scope.auth.$onAuthStateChanged(function(response){
                $scope.userProfile = Profile.getProfile(response.uid);
+               Profile.currentUser =  $scope.userProfile;
+               console.log("user");
+               console.log(Profile.currentUser);
+
            });
 
 $state.go("dashboard.status");
 
 }])
 
-.controller('statusController',['$scope', '$interval', '$timeout', '$window','roundProgressService','fireFactory','Profile','Task',function($scope,$interval, $timeout, $window, roundProgressService,fireFactory,Profile,Task){
+.controller('statusController',['$scope', '$interval', '$timeout', '$window','roundProgressService','fireFactory','Profile','Task',function($scope,$interval, $timeout,$window, roundProgressService,fireFactory,Profile,Task){
+  $scope.compltedTask = [];
+
+
+        $scope.pushUserTask = function(rows){
+          if($scope.compltedTask.indexOf(rows.$id) < 0){
+              $scope.compltedTask.push(rows.$id);
+          }
+          Profile.updateTask($scope.compltedTask,Profile.currentUser.id);
+        }
         $scope.userProfile ={};
         $scope.taskCategory = "mandatory";
         $scope.totalTask = Task.getTask();
@@ -72,8 +87,8 @@ $state.go("dashboard.status");
          $scope.auth.$onAuthStateChanged(function(response){
              $scope.userProfile = Profile.getProfile(response.uid);
          });
-           $scope.current =        27;
-           $scope.max =            50;
+           $scope.current =        60;
+           $scope.max =            100;
            $scope.offset =         0;
            $scope.timerCurrent =   0;
            $scope.uploadCurrent =  0;

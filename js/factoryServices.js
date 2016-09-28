@@ -10,12 +10,21 @@ xdapp.factory("fireFactory",['$firebaseObject', '$firebaseAuth','$firebaseArray'
 }])
 .factory('Profile',['$firebaseObject',function($firebaseObject){
   return {
+    currentUser :{},
     getProfile : function(id){
       return $firebaseObject(db_ref.child('userBase').child(id));
     },
     pushProfile : function(response,user){
       this.userElement = firebase.database().ref('/userBase/'+ response.uid);
       this.userElement.set(user);
+    },
+    updateTask : function(taskId,UserId){
+      this.userElement = firebase.database().ref('/userBase/'+ UserId + '/Completed' );
+      console.log(taskId +'----'+UserId);
+      console.log(this.userElement);
+      this.userElement.set(taskId);
+      console.log("update Task");
+
     }
   }
 
