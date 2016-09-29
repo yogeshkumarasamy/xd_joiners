@@ -34,6 +34,11 @@ xdapp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'template/dashboard/new_task.html',
             controller : 'createTaskController'
         })
+        .state('dashboard.task_list', {
+            url: '/task_list',
+            templateUrl: 'template/dashboard/task_list.html',
+            controller : 'TasklistController'
+        })
 
 
 });

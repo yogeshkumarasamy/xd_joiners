@@ -247,3 +247,30 @@ a.rounded_button span.glyphicon.glyphicon-ok{
     min-height: 40px;
     padding-right: 40px;
 }
+
+/* task_list css */
+.head {
+    background-color: lightgrey;
+}
+.search {
+    margin:10px 0px;
+}
+.radio-btn {
+     margin:20px 0px;
+}
+.radio {
+    padding-left: 0px;
+}
+.heading {
+    padding-left: 0px;
+    margin:0px 20px 20px 0px;
+    background-color: lightgrey;
+}
+.heading p {
+    padding-left: 10px;
+}
+.heading h3 {
+    padding: 10px;
+}
+
+
