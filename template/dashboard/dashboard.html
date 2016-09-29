@@ -1,38 +1,30 @@
 <div class="contaioner-fluid dash-container" ng-controller='DashController'>
-
     <div class="dash-wrapper">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dash-title-bar">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 user-name-sec">
-          <!-- <span class="dash-prImage"></span> -->
-            <span>Welcome <span>{{userProfile.name}}</span></span>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dash-title-bar">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 user-name-sec">
+                <!-- <span class="dash-prImage"></span> -->
+                <span>Welcome <span>{{userProfile.name}}</span></span>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 dash-notify text-right ">
+                <span class="glyphicon glyphicon-envelope"></span>
+                <span class="glyphicon glyphicon-globe"></span>
+                <span class="dropdown">
+                  <span class="glyphicon glyphicon-user dropdown-toggle" data-toggle="dropdown"></span>
+                </span>
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 dash-notify text-right ">
-          <span class="glyphicon glyphicon-envelope"></span>
-             <span class="glyphicon glyphicon-globe"></span>
-             <span class="dropdown">
-             <span class="glyphicon glyphicon-user dropdown-toggle" data-toggle="dropdown"></span>
-             <ul class="dropdown-menu">
-                <li><a href="#">HTML</a></li>
-                <li><a href="#">CSS</a></li>
-                <li><a href="#">JavaScript</a></li>
-              </ul>
-            </span>
-
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 dash-left-bar">
+            <ul class="nav list-unstyled">
+                <li><a ui-sref="dashboard.status"><span class="glyphicon glyphicon-th"></span>Dashboard</a></li>
+                <li><a ui-sref='dashboard.new_task'><span class="glyphicon glyphicon-th-list"></span>Create Task</a>
+                <li><a ui-sref='dashboard.task_list'><span class="glyphicon glyphicon-tasks"></span>Task List</a>
+                <li><a><span class="glyphicon glyphicon-envelope"></span>Messages</a></li>
+                <li><a><span class="glyphicon glyphicon-cog"></span>Settings</a></li>
+            </ul>
         </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 dash-left-bar">
-        <ul class="nav list-unstyled">
-            <li><a ui-sref="dashboard.status"><span class="glyphicon glyphicon-th"></span>Dashboard</a></li>
-              <li><a ui-sref='dashboard.new_task'><span class="glyphicon glyphicon-th-list"></span>Create Task</a><li><a ui-sref='dashboard.task_list'><span class="glyphicon glyphicon-tasks"></span>Task List</a>
-            <li><a><span class="glyphicon glyphicon-envelope"></span>Messages</a></li>
-            <li><a><span class="glyphicon glyphicon-cog"></span>Settings</a></li>
-        </ul>
-
-      </div>
+        <!-- Dashboard Right Panel UI View -->
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 dash-view">
-         <div ui-view></div>
-       </div>
+            <div ui-view></div>
+        </div>
     </div>
-
 </div>

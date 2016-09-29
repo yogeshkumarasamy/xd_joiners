@@ -1,75 +1,12 @@
 /* bootstrap class override */
+
 .btn {
     padding: 5px 40px!important;
 }
 
-.navbar-default {
-    border: none;
-    background-color: #ff5800;
-    border-radius: 0;
-}
-
-.navbar {
-    min-height: 75px;
-    margin-bottom: 0;
-}
-
-.register-wrp {
-    background-color: #ff5800;
-    padding: 50px 0;
-    margin: 100px auto;
-}
-
-.ex-center {
-    margin: 0 auto;
-    float: none;
-}
-
-.field-wrp input,
-.field-wrp select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: none;
-}
-
-.field-wrp input:last-child {
-    margin-bottom: 0;
-}
-
-.field-wrp h2 {
-    font-size: 30px;
-    color: #fff;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 30px;
-    margin-top: 0;
-}
-
-.register-sub {
-    background-color: #999;
-    color: #fff;
-
-  }
-.register-sub:hover {
-    background-color: #333;
-}
-
-footer {
-    background-color: #ff5800;
-    min-height: 75px;
-}
-
-.field-wrp p a {
-    color: #105fa2;
-    text-align: center;
-    font-size: 14px;
-    display: block;
-    text-decoration: none;
-}
-
 
 /* Login New Css */
+
 .login-wrapper input {
     width: 100%;
     margin: 8px 0;
@@ -77,19 +14,18 @@ footer {
     border: 0;
     padding: 10px;
     box-shadow: #aeaeae 2px 3px 7px;
-
 }
 
 .login-container {
     background: url(../images/login/background.jpg);
     background-size: cover;
-    height:100vh;
+    height: 100vh;
     overflow: hidden;
-    overflow-y : auto;
-    transition : width 0.5s ease;
+    overflow-y: auto;
+    transition: width 0.5s ease;
 }
 
- .login-wrapper {
+.login-wrapper {
     width: 30%;
     margin: 0 auto;
     background: rgba(234, 234, 234, 0.4);
@@ -97,6 +33,7 @@ footer {
     margin-top: 10%;
     border-radius: 20px;
 }
+
 .logo-container IMG {
     max-width: 200px;
     margin: 0 auto;
@@ -106,60 +43,72 @@ footer {
 p.forgetPass {
     text-align: right;
 }
+
 .signIn h3 {
     text-align: center;
     font-weight: 700;
     border-top: 1px solid #797979;
     padding-top: 4%;
 }
+
 p.sign-link {
     margin-top: 20px;
 }
+
 p.sign-link a {
     text-decoration: underline;
-    font-weight:700;
-    font-size:1.5rem;
-    color:#000;
-    }
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #000;
+}
 
-    .forgetPass a{
-        color:#000;
-        font-weight:700;
-    }
+.forgetPass a {
+    color: #000;
+    font-weight: 700;
+}
 
-    input.ng-dirty.ng-invalid {
-        border: 1px solid red;
-    }
+input.ng-dirty.ng-invalid {
+    border: 1px solid red;
+}
 
-  /* Dashboard Css */
-  .dash-left-bar {
+
+/* Dashboard Css */
+
+.dash-left-bar {
     padding: 0;
 }
-  .dash-title-bar {
+
+.dash-title-bar {
     background: #F97705;
     color: #fff;
     padding: 20px;
 }
+
 .dash-left-bar .nav {
     background: #3a3a3a;
     height: 100vw;
 }
+
 .dash-left-bar .nav li a {
     color: #fff;
     font-size: 17px;
     padding: 20px;
     border-bottom: 1px solid #fff;
 }
+
 .dash-left-bar .nav li a:hover {
     background: #aeaeae;
     color: #3a3a3a;
 }
+
 .user-name-sec {
     font-size: 16px;
 }
+
 ul.nav.list-unstyled .glyphicon {
     padding-right: 20px;
 }
+
 .dash-notify .glyphicon {
     margin: 0 10px;
 }
@@ -167,20 +116,25 @@ ul.nav.list-unstyled .glyphicon {
 .progress-wrapper {
     position: relative;
 }
-.progress{
+
+.progress {
     position: absolute;
 }
+
 .dash-status-card {
     text-align: center;
     padding: 20px;
 }
+
 .task_Container input, .task_Container textarea, .task_Container select {
     margin: 10px 0;
-    width:100%;
+    width: 100%;
 }
-.task_Container textarea{
-  height:150px
+
+.task_Container textarea {
+    height: 150px
 }
+
 .card-block {
     padding: 5px 10px;
     background: #eaeaea;
@@ -188,9 +142,11 @@ ul.nav.list-unstyled .glyphicon {
     border-radius: 6px;
     position: relative;
 }
+
 ul.task-list {
     padding: 0;
 }
+
 ul.task-list li {
     list-style-type: none;
     display: inline-block;
@@ -199,30 +155,38 @@ ul.task-list li {
     font-weight: bold;
     cursor: pointer;
 }
+
 input.task-search {
     width: 100%;
     min-height: 32px;
     margin: 10px;
 }
+
 ul.task-list li.active {
     border-bottom: 2px solid #f97705;
 }
+
 ul.task-list li a {
     text-decoration: none;
 }
+
 ul.task-list li a:hover {
     color: #f97705;
 }
+
 .card-block.mandatory {
     background: #ff0000;
     color: #ffffff;
 }
+
 .card-block.additional {
     background: #f97705;
 }
+
 .card-block.others {
     background: #45ccce;
 }
+
 a.rounded_button {
     width: 40px;
     background: #fff;
@@ -237,49 +201,65 @@ a.rounded_button {
     right: 4%;
     cursor: auto;
 }
+
 a.rounded_button:hover {
     box-shadow: none;
 }
-a.rounded_button span.glyphicon.glyphicon-ok{
-  margin:5px;
+
+a.rounded_button span.glyphicon.glyphicon-ok {
+    margin: 5px;
 }
+
 .card-block p {
     min-height: 40px;
     padding-right: 40px;
 }
 
 
+/*
+Name : Layout Css
+Author : Suresh Thangarasu
+email:suriish@gmail.com
+*/
+
+
 /* task_list css */
+
 .head {
     background-color: lightgrey;
 }
+
 .search {
-    margin:10px 0px;
+    margin: 10px 0px;
 }
+
 .radio-btn {
-     margin:20px 0px;
+    margin: 20px 0px;
 }
+
 .radio {
     padding-left: 0px;
 }
+
 .heading {
     padding-left: 0px;
-    margin:0px 20px 20px 0px;
+    margin: 0px 20px 20px 0px;
     background-color: lightgrey;
 }
+
 .heading p {
     padding-left: 10px;
 }
+
 .heading h3 {
     padding: 10px;
 }
-
 
 .compltedTaskContainer {
     clear: both;
     margin-top: 10px;
 }
+
 a.rounded_button span.glyphicon.glyphicon-remove {
     margin: 7px;
 }
-

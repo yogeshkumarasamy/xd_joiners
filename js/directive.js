@@ -1,5 +1,5 @@
-xdapp.directive("loginForm",[function(){
-return{
+xdapp.directive("loginForm", [function() {
+    return {
 
-}
+    }
 }])

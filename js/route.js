@@ -1,43 +1,42 @@
 xdapp.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/signin');
     $stateProvider
-        // Login View
-
+    // Login View
         .state('signin', {
             url: '/signin',
             templateUrl: 'template/login/signIn.html',
-            controller : 'loginController'
+            controller: 'loginController'
         })
         .state('signup', {
             url: '/signup',
             templateUrl: 'template/login/signup.html',
-            controller : "RegistrationController"
+            controller: "RegistrationController"
         })
-         .state('forgetPassword', {
+        .state('forgetPassword', {
             url: '/forgetPassword',
             templateUrl: 'template/login/forgetPassword.html'
         })
         .state('dashboard', {
             url: '/dashboard',
             templateUrl: 'template/dashboard/dashboard.html',
-            controller : 'DashController',
-            redirectTo : 'dashboard.status'
+            controller: 'DashController',
+            redirectTo: 'dashboard.status'
 
         })
         .state('dashboard.status', {
             url: '/status',
             templateUrl: 'template/dashboard/main_content.html',
-            controller : 'statusController'
+            controller: 'statusController'
         })
         .state('dashboard.new_task', {
             url: '/new_task',
             templateUrl: 'template/dashboard/new_task.html',
-            controller : 'createTaskController'
+            controller: 'createTaskController'
         })
         .state('dashboard.task_list', {
             url: '/task_list',
             templateUrl: 'template/dashboard/task_list.html',
-            controller : 'TasklistController'
+            controller: 'TasklistController'
         })
 
 

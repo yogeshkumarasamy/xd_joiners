@@ -1,15 +1,14 @@
 <h1>Create New Task </h1>
 <div class="task_Container">
-<form name="newTask" class="form-group" ng-submit="createTask()"  novalidate >
-<input type="text" name="task_name" value="" class="form-control" ng-model="Task.name" placeholder="Task Name" required>
-<textarea name="task_desc" class="form-control" ng-model="Task.desc" placeholder="Task Description" required></textarea>
-<select   ng-model="Task.category" class="form-control">
+    <form name="newTask" class="form-group" ng-submit="createTask()" novalidate>
+        <input type="text" name="task_name" value="" class="form-control" ng-model="Task.name" placeholder="Task Name" required>
+        <textarea name="task_desc" class="form-control" ng-model="Task.desc" placeholder="Task Description" required></textarea>
+        <select ng-model="Task.category" class="form-control">
   <!-- <option value="null" selected> Select Task Category</option> -->
-<option  ng-repeat = "val in task_option" value = {{val}} >{{val}}</option>
-</select>
-<div class="text-right">
-<button class="btn btn-medium btn-primary" type="submit">Publish</button>  <a class="btn btn-medium btn-warning" ng-click="feildReset()" >Clear</a>
-</div>
-</form>
-
+        <option  ng-repeat = "val in task_option" value = {{val}} >{{val}}</option>
+        </select>
+        <div class="text-right">
+            <button class="btn btn-medium btn-primary" type="submit">Publish</button> <a class="btn btn-medium btn-warning" ng-click="feildReset()">Clear</a>
+        </div>
+    </form>
 </div>
