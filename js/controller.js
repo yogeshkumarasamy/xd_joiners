@@ -49,7 +49,7 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
         vm.auth.$onAuthStateChanged(function(response) {
             vm.userProfile = Profile.getProfile(response.uid);
             Profile.currentUser = vm.userProfile;
-            Profile.currentUser.$loaded().then(function() {
+            vm.userProfile.$loaded().then(function() {
                 $state.go("dashboard.status");
             });
         });
@@ -71,7 +71,7 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
         Profile.currentUser = vm.userProfile;
         vm.auth.$onAuthStateChanged(function(response) {
             vm.userProfile = Profile.getProfile(response.uid);
-            Profile.currentUser.$loaded().then(function() {
+            vm.userProfile.$loaded().then(function() {
                 vm.compltedTask = Profile.currentUser.Completed === undefined ? [] : Profile.currentUser.Completed;
             });
         });
