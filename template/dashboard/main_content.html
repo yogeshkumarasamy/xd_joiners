@@ -101,6 +101,7 @@
   </ul>
 
   <input type ="text" ng-model = "searchTaskName" placeholder = "Search For Task" class="task-search" >
+  <h2> inCompleted Task </h2>
 <div class = "cardContainer">
   <div class="card" ng-repeat = "(key , rows) in incompleteTaskList | filter : searchTaskName | filter : taskCategory"   >
   <div  ng-hide="rows.hide" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
@@ -111,5 +112,20 @@
 </div>
 </div>
   </div>
+</div>
+
+<div class="compltedTaskContainer">
+<h2> Completed Task </h2>
+<div class = "cardContainer">
+  <div class="card" ng-repeat = "(key , rows) in CompleteTaskList | filter : searchTaskName | filter : taskCategory"   >
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
+  <div class="card-block {{rows.category }}" >
+  <h4 class="card-title">{{rows.name }}</h4>
+  <p class="card=text">{{rows.desc}}</p>
+  <a class="rounded_button"  ng-click= "removeUserTask(rows)"><span class="glyphicon glyphicon-remove"></span> </a>
+    </div>
+  </div>
+</div>
+</div>
 </div>
  </div>

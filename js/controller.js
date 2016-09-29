@@ -65,34 +65,40 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
            });
 }])
 
-.controller('statusController',['$scope', '$interval', '$timeout', '$window','roundProgressService','fireFactory','Profile','Task',function($scope,$interval, $timeout,$window, roundProgressService,fireFactory,Profile,Task){
+.controller('statusController',['$q','$state','$scope', '$interval', '$timeout', '$window','roundProgressService',
+'fireFactory','Profile','Task',function($q,$state,$scope,$interval, $timeout,$window, roundProgressService,fireFactory,Profile,Task){
   $scope.auth.$onAuthStateChanged(function(response){
+    var deferred = $q.defer();
+    $scope.compltedTask = [];
+    $scope.userProfile ={};
+    $scope.CompleteTaskList = [];
+    $scope.incompleteTaskList=[];
+    $scope.taskCategory = "mandatory";
+    $scope.totalTask =[];
+
+    $scope.totalTask = Task.getTask();
       $scope.userProfile = Profile.getProfile(response.uid);
       Profile.currentUser =  $scope.userProfile;
       Profile.currentUser.$loaded().then(function(){
-
         $scope.compltedTask = Profile.currentUser.Completed === undefined ? [] :Profile.currentUser.Completed;
-        console.log(  $scope.compltedTask);
       });
     });
-          $scope.totalTask = [];
-        $scope.compltedTask = [];
-        $scope.userProfile ={};
-        $scope.taskCategory = "mandatory";
-        $scope.totalTask = Task.getTask();
-
-
                 $scope.pushUserTask = function(rows){
                   rows.hide = true;
                   if($scope.compltedTask.indexOf(rows.$id) < 0){
                       $scope.compltedTask.push(rows.$id);
+                      Task.CompleteTaskList.push(rows);
                   }
                   Profile.updateTask($scope.compltedTask,Profile.currentUser.id);
+                  var index =   Task.incompleteTaskList.indexOf(rows.$id);
+
+                    $scope.CompleteTaskList = Task.CompleteTaskList;
                 }
 
-                $scope.$watchGroup(['totalTask','compltedTask'],function(){
+                $scope.$watch('totalTask',function(){
                   $scope.CompleteTaskList = [];
                   $scope.incompleteTaskList=[];
+                 try{
                   $scope.totalTask.$loaded().then(function(){
                     console.log("task VAlue changed");
                       console.log($scope.totalTask);
@@ -100,20 +106,25 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
                         console.log(key.$id);
                         if($scope.compltedTask.indexOf(key.$id)<0){
                           $scope.incompleteTaskList.push(key);
+                          Task.incompleteTaskList =   $scope.incompleteTaskList;
                         }
                         else {
                           $scope.CompleteTaskList.push(key);
+                          Task.CompleteTaskList =     $scope.CompleteTaskList;
 
                         }
                          console.log("seperation task");
-                          console.log($scope.CompleteTaskList);
-                          console.log($scope.incompleteTaskList);
+                          console.log(Task.CompleteTaskList);
+                          console.log(Task.incompleteTaskList);
                     })
 
                   })
+                }
+                catch(error){
 
+                }
                 });
-
+/* Dial Plugin - Need to reform  ================================================================= */
            $scope.current =        60;
            $scope.max =            100;
            $scope.offset =         0;
@@ -176,6 +187,8 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
                $scope.seconds = seconds;
                $scope.time = getPadded(hours) + ':' + getPadded(minutes) + ':' + getPadded(seconds);
            }, 1000);
+/* Dial Plugin - Need to reform  ================================================================= */
+
 }])
 
 .controller('createTaskController',['$scope','fireFactory','Task',function($scope,fireFactory,Task){

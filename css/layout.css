@@ -247,3 +247,10 @@ a.rounded_button span.glyphicon.glyphicon-ok{
     min-height: 40px;
     padding-right: 40px;
 }
+.compltedTaskContainer {
+    clear: both;
+    margin-top: 10px;
+}
+a.rounded_button span.glyphicon.glyphicon-remove {
+    margin: 7px;
+}
