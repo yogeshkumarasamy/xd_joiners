@@ -5,12 +5,14 @@ xdapp.config(function($stateProvider, $urlRouterProvider) {
         .state('signin', {
             url: '/signin',
             templateUrl: 'template/login/signIn.html',
-            controller: 'loginController'
+            controller: 'loginController',
+            controllerAs: "login"
         })
         .state('signup', {
             url: '/signup',
             templateUrl: 'template/login/signup.html',
-            controller: "RegistrationController"
+            controller: "RegistrationController",
+            controllerAs: "regs"
         })
         .state('forgetPassword', {
             url: '/forgetPassword',
@@ -20,18 +22,21 @@ xdapp.config(function($stateProvider, $urlRouterProvider) {
             url: '/dashboard',
             templateUrl: 'template/dashboard/dashboard.html',
             controller: 'DashController',
-            redirectTo: 'dashboard.status'
+            redirectTo: 'dashboard.status',
+            controllerAs: "dashboard"
 
         })
         .state('dashboard.status', {
             url: '/status',
             templateUrl: 'template/dashboard/main_content.html',
-            controller: 'statusController'
+            controller: 'statusController',
+            controllerAs: "status"
         })
         .state('dashboard.new_task', {
             url: '/new_task',
             templateUrl: 'template/dashboard/new_task.html',
-            controller: 'createTaskController'
+            controller: 'createTaskController',
+            controllerAs: "createTask"
         })
         .state('dashboard.task_list', {
             url: '/task_list',

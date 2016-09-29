@@ -5,10 +5,10 @@
                 <img src="images/logoBlack.png" />
             </div>
             <div class="signIn">
-                <h3> Sign In</h3> {{signInFrm.$valid}}
-                <form name="signInFrm" class="form-group" ng-click="signInFrm.$valid && usrAuth()" novalidate>
-                    <input type="email" placeholder="Email" class="form-control" ng-model="usr.Name" required>
-                    <input type="password" placeholder="Password" class="form-control" ng-model="usr.Pwd" required>
+                <h3> Sign In</h3>
+                <form name="signInFrm" class="form-group" ng-click="signInFrm.$valid && login.usrAuth()" novalidate>
+                    <input type="email" placeholder="Email" class="form-control" ng-model="login.usr.Name" required>
+                    <input type="password" placeholder="Password" class="form-control" ng-model="login.usr.Pwd" required>
                     <p class="forgetPass"> <a ui-sref="forgetPassword">Forget Password?</a></p>
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                 </form>

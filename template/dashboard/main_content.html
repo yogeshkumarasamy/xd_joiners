@@ -46,21 +46,21 @@
 </div>
 <div class="task-list-contaoner col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <ul class="task-list">
-        <li ng-class="{'active' : taskCategory=='mandatory'}"><a data-toggle="tab" ng-click="taskCategory='mandatory'">Mandatory Task</a></li>
-        <li ng-class="{'active' : taskCategory=='additional'}"><a data-toggle="tab" ng-click="taskCategory='additional'">Additional Task</a></li>
-        <li ng-class="{'active' : taskCategory=='others'}"><a data-toggle="tab" ng-click="taskCategory='others'">Other Task</a></li>
-        <li ng-class="{'active' : taskCategory==''}"><a data-toggle="tab" ng-click="taskCategory=''">All</a></li>
+        <li ng-class="{'active' : status.taskCategory=='mandatory'}"><a data-toggle="tab" ng-click="status.taskCategory='mandatory'">Mandatory Task</a></li>
+        <li ng-class="{'active' : status.taskCategory=='additional'}"><a data-toggle="tab" ng-click="status.taskCategory='additional'">Additional Task</a></li>
+        <li ng-class="{'active' : status.taskCategory=='others'}"><a data-toggle="tab" ng-click="status.taskCategory='others'">Other Task</a></li>
+        <li ng-class="{'active' : status.taskCategory==''}"><a data-toggle="tab" ng-click="status.taskCategory=''">All</a></li>
     </ul>
 
-    <input type="text" ng-model="searchTaskName" placeholder="Search For Task" class="task-search">
+    <input type="text" ng-model="status.searchTaskName" placeholder="Search For Task" class="task-search">
     <h2> inCompleted Task </h2>
     <div class="cardContainer">
-        <div class="card" ng-repeat="(key , rows) in incompleteTaskList | filter : searchTaskName | filter : taskCategory">
+        <div class="card" ng-repeat="(key , rows) in status.incompleteTaskList | filter : status.searchTaskName | filter : status.taskCategory">
             <div ng-hide="rows.compHide" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
                 <div class="card-block {{rows.category }}">
                     <h4 class="card-title">{{rows.name }}</h4>
                     <p class="card-text">{{rows.desc}}</p>
-                    <a class="rounded_button" ng-click="pushUserTask(rows)"><span class="glyphicon glyphicon-ok"></span> </a>
+                    <a class="rounded_button" ng-click="status.pushUserTask(rows)"><span class="glyphicon glyphicon-ok"></span> </a>
                 </div>
             </div>
         </div>
@@ -69,12 +69,12 @@
     <div class="compltedTaskContainer">
         <h2> Completed Task </h2>
         <div class="cardContainer">
-            <div class="card" ng-repeat="(key , row) in CompleteTaskList | filter : searchTaskName | filter : taskCategory">
+            <div class="card" ng-repeat="(key , row) in status.CompleteTaskList | filter : status.searchTaskName | filter : status.taskCategory">
                 <div ng-hide="row.incompHide" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
                     <div class="card-block {{row.category }}">
                         <h4 class="card-title">{{row.name }}</h4>
                         <p class="card-text">{{row.desc}}</p>
-                        <a class="rounded_button" ng-click="removeUserTask(row)"><span class="glyphicon glyphicon-remove"></span> </a>
+                        <a class="rounded_button" ng-click="status.removeUserTask(row)"><span class="glyphicon glyphicon-remove"></span> </a>
                     </div>
                 </div>
             </div>

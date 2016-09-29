@@ -6,17 +6,17 @@
             </div>
             <div class="signUp">
                 <h3>Register</h3>
-                <form name="regFrm" action="" ng-submit="regFrm.$valid && registerUser()" novalidate>
+                <form name="regFrm" action="" ng-submit="regFrm.$valid && regs.registerUser()" novalidate>
                     <div class="">
-                        <input type="text" placeholder="Name" ng-model="user.name" class="form-control" required>
-                        <input type="email" placeholder="Email" ng-model="user.email" class="form-control" required>
+                        <input type="text" placeholder="Name" ng-model="regs.user.name" class="form-control" required>
+                        <input type="email" placeholder="Email" ng-model="regs.user.email" class="form-control" required>
                         <!-- <select ng-model="user.role" class="form-control">
 			                       <option selected="selected">--Select Role--</option>
 			                        <option value="supervisor">Supervisor</option>
 			                        <option value="joiner">New Joiners</option>
 			                  </select> -->
-                        <input type="tel" placeholder="Contact Number" ng-model="user.number" class="form-control" required>
-                        <input type="password" placeholder="Password" ng-model="user.pwd" class="form-control" required>
+                        <input type="tel" placeholder="Contact Number" ng-model="regs.user.number" class="form-control" required>
+                        <input type="password" placeholder="Password" ng-model="regs.user.pwd" class="form-control" required>
                         <input type="password" placeholder="Re-Type Password" class="form-control" required>
                         <button type="submit" class="btn btn-primary btn-block">Register</button>
                         <p class="sign-link text-center">Existing User <a ui-sref="signin">Sign In</a></p>

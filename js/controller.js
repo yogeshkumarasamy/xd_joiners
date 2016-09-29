@@ -1,110 +1,112 @@
 xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$location', 'Profile',
     function($scope, fireFactory, $http, $location, Profile) {
+        var vm = this;
 
-        $scope.usrAuth = function() {
+        vm.usrAuth = function() {
 
             try {
-
                 var authObj = fireFactory.authRef();
-                authObj.$signInWithEmailAndPassword($scope.usr.Name, $scope.usr.Pwd)
+                authObj.$signInWithEmailAndPassword(vm.usr.Name, vm.usr.Pwd)
                     .then(function(user) {
-                        $location.path("/dashboard/status");
                         Profile.currentUser = user.uid;
-                    }).catch(function(error) {})
-            } catch (error) {};
+                        $location.path("/dashboard/status");
+                    })
+            } catch (error) {
+
+            };
         }
 
     }
 ])
 
 .controller('RegistrationController', ['$scope', 'fireFactory', '$location', 'Profile', function($scope, fireFactory, $location, Profile) {
-        $scope.user = {};
-        $scope.regError = "test";
-        $scope.msg = "I am in RegistrationController";
-        var authObj = fireFactory.authRef();
-        $scope.registerUser = function() {
+        var vm = this;
+        vm.user = {};
+        vm.regError = "test";
+        vm.authObj = fireFactory.authRef();
+        vm.registerUser = function() {
             try {
-                authObj.$createUserWithEmailAndPassword($scope.user.email, $scope.user.pwd)
+                vm.authObj.$createUserWithEmailAndPassword(vm.user.email, vm.user.pwd)
                     .then(function(response) {
-                        $scope.user.id = response.uid;
-                        $scope.user.role = "new";
-                        Profile.pushProfile(response, $scope.user);
+                        vm.user.id = response.uid;
+                        vm.user.role = "new";
+                        Profile.pushProfile(response, vm.user);
                     })
                     .then(function() {
                         $location.path('/signin')
                     })
             } catch (error) {
                 // console.log(error);
-                $scope.regError = error.message;
+                vm.regError = error.message;
             };
         }
     }])
     .controller('DashController', ['$scope', '$state', 'fireFactory', 'Profile', function($scope, $state, fireFactory, Profile) {
-        $scope.userProfile = {}
-        $scope.auth = fireFactory.authRef();
-        $scope.userProfile = {};
-        $scope.auth.$onAuthStateChanged(function(response) {
-            $scope.userProfile = Profile.getProfile(response.uid);
-            Profile.currentUser = $scope.userProfile;
+        var vm = this;
+        vm.userProfile = {};
+        vm.auth = fireFactory.authRef();
+        vm.userProfile = {};
+        vm.auth.$onAuthStateChanged(function(response) {
+            vm.userProfile = Profile.getProfile(response.uid);
+            Profile.currentUser = vm.userProfile;
             Profile.currentUser.$loaded().then(function() {
                 $state.go("dashboard.status");
             });
-
         });
     }])
 
 .controller('statusController', ['$q', '$state', '$scope', '$interval', '$timeout', '$window', 'roundProgressService',
     'fireFactory', 'Profile', 'Task',
     function($q, $state, $scope, $interval, $timeout, $window, roundProgressService, fireFactory, Profile, Task) {
-        $scope.auth.$onAuthStateChanged(function(response) {
-            var deferred = $q.defer();
-            $scope.compltedTask = [];
-            $scope.userProfile = {};
-            $scope.CompleteTaskList = [];
-            $scope.incompleteTaskList = [];
-            $scope.taskCategory = "mandatory";
-            $scope.totalTask = [];
-            $scope.incompltedTask = [];
-            $scope.totalTask = Task.getTask();
-            $scope.userProfile = Profile.getProfile(response.uid);
-            Profile.currentUser = $scope.userProfile;
+        var vm = this;
+        $scope.totalTask = [];
+        vm.userProfile = {};
+        vm.compltedTask = [];
+        vm.incompltedTask = [];
+        vm.CompleteTaskList = [];
+        vm.incompleteTaskList = [];
+        vm.taskCategory = "mandatory";
+        $scope.totalTask = Task.getTask();
+        vm.auth = fireFactory.authRef();
+        Profile.currentUser = vm.userProfile;
+        vm.auth.$onAuthStateChanged(function(response) {
+            vm.userProfile = Profile.getProfile(response.uid);
             Profile.currentUser.$loaded().then(function() {
-                $scope.compltedTask = Profile.currentUser.Completed === undefined ? [] : Profile.currentUser.Completed;
+                vm.compltedTask = Profile.currentUser.Completed === undefined ? [] : Profile.currentUser.Completed;
             });
         });
-        $scope.pushUserTask = function(rows) {
+        vm.pushUserTask = function(rows) {
             rows.compHide = true;
             rows.incompHide = false;
-
-            if ($scope.compltedTask.indexOf(rows.$id) < 0) {
-                $scope.compltedTask.push(rows.$id);
+            if (vm.compltedTask.indexOf(rows.$id) < 0) {
+                vm.compltedTask.push(rows.$id);
                 Task.CompleteTaskList.push(rows);
             }
-            Profile.updateTask($scope.compltedTask, Profile.currentUser.id);
+            Profile.updateTask(vm.compltedTask, Profile.currentUser.id);
         }
-        $scope.removeUserTask = function(row) {
+        vm.removeUserTask = function(row) {
             row.compHide = false;
             row.incompHide = true;
-            if ($scope.incompltedTask.indexOf(row.$id) < 0) {
-                $scope.incompltedTask.push(row.$id);
+            if (vm.incompltedTask.indexOf(row.$id) < 0) {
+                vm.incompltedTask.push(row.$id);
                 Task.incompleteTaskList.push(row);
             }
-            var elemId = Profile.currentUser.Completed.indexOf(row.$id);
+            vm.elemId = Profile.currentUser.Completed.indexOf(row.$id);
 
-            Profile.removeTask(elemId, Profile.currentUser.id);
+            Profile.removeTask(vm.elemId, Profile.currentUser.id);
         }
         $scope.$watch('totalTask', function() {
-            $scope.CompleteTaskList = [];
-            $scope.incompleteTaskList = [];
+            vm.CompleteTaskList = [];
+            vm.incompleteTaskList = [];
             try {
                 $scope.totalTask.$loaded().then(function() {
                     angular.forEach($scope.totalTask, function(key, value) {
-                        if ($scope.compltedTask.indexOf(key.$id) < 0) {
-                            $scope.incompleteTaskList.push(key);
-                            Task.incompleteTaskList = $scope.incompleteTaskList;
+                        if (vm.compltedTask.indexOf(key.$id) < 0) {
+                            vm.incompleteTaskList.push(key);
+                            Task.incompleteTaskList = vm.incompleteTaskList;
                         } else {
-                            $scope.CompleteTaskList.push(key);
-                            Task.CompleteTaskList = $scope.CompleteTaskList;
+                            vm.CompleteTaskList.push(key);
+                            Task.CompleteTaskList = vm.CompleteTaskList;
                         }
                     })
                 })
@@ -143,22 +145,23 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
                 'font-size': $scope.radius / 6 + 'px'
             };
         };
-       /* Dial Plugin - Need to reform  ================================================================= */
+        /* Dial Plugin - Need to reform  ================================================================= */
     }
 ])
 
 .controller('createTaskController', ['$scope', 'fireFactory', 'Task', function($scope, fireFactory, Task) {
-    $scope.Task = {};
-    $scope.task_option = ["mandatory", "additional", "others"];
-    $scope.Task.category = $scope.task_option[0];
-    $scope.feildReset = function() {
-        $scope.Task = {};
-        $scope.Task.category = $scope.task_option[0];
+    var vm = this;
+    vm.Task = {};
+    vm.task_option = ["mandatory", "additional", "others"];
+    vm.Task.category = vm.task_option[0];
+    vm.feildReset = function() {
+        vm.Task = {};
+        vm.Task.category = vm.task_option[0];
     }
-    $scope.createTask = function() {
+    vm.createTask = function() {
         try {
-            Task.pushTask($scope.Task);
-            $scope.feildReset();
+            Task.pushTask(vm.Task);
+            vm.feildReset();
         } catch (error) {};
     }
 
