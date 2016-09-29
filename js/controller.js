@@ -70,7 +70,9 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
       $scope.userProfile = Profile.getProfile(response.uid);
       Profile.currentUser =  $scope.userProfile;
       Profile.currentUser.$loaded().then(function(){
-        $scope.compltedTask = Profile.currentUser.Completed;
+
+        $scope.compltedTask = Profile.currentUser.Completed === undefined ? [] :Profile.currentUser.Completed;
+        console.log(  $scope.compltedTask);
       });
     });
           $scope.totalTask = [];
