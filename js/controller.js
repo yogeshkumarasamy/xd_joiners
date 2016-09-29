@@ -58,35 +58,60 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
            $scope.auth.$onAuthStateChanged(function(response){
                $scope.userProfile = Profile.getProfile(response.uid);
                Profile.currentUser =  $scope.userProfile;
-               console.log("user");
-               console.log(Profile.currentUser);
+               Profile.currentUser.$loaded().then(function(){
+               $state.go("dashboard.status");
+               });
 
            });
-
-$state.go("dashboard.status");
-
 }])
 
 .controller('statusController',['$scope', '$interval', '$timeout', '$window','roundProgressService','fireFactory','Profile','Task',function($scope,$interval, $timeout,$window, roundProgressService,fireFactory,Profile,Task){
-  $scope.compltedTask = [];
-
-
-        $scope.pushUserTask = function(rows){
-          if($scope.compltedTask.indexOf(rows.$id) < 0){
-              $scope.compltedTask.push(rows.$id);
-          }
-          Profile.updateTask($scope.compltedTask,Profile.currentUser.id);
-        }
+  $scope.auth.$onAuthStateChanged(function(response){
+      $scope.userProfile = Profile.getProfile(response.uid);
+      Profile.currentUser =  $scope.userProfile;
+      Profile.currentUser.$loaded().then(function(){
+        $scope.compltedTask = Profile.currentUser.Completed;
+      });
+    });
+          $scope.totalTask = [];
+        $scope.compltedTask = [];
         $scope.userProfile ={};
         $scope.taskCategory = "mandatory";
         $scope.totalTask = Task.getTask();
-        console.log("task obj");
-        console.log($scope.totalTask );
-         $scope.auth = fireFactory.authRef();
-         $scope.userProfile = {};
-         $scope.auth.$onAuthStateChanged(function(response){
-             $scope.userProfile = Profile.getProfile(response.uid);
-         });
+
+
+                $scope.pushUserTask = function(rows){
+                  rows.hide = true;
+                  if($scope.compltedTask.indexOf(rows.$id) < 0){
+                      $scope.compltedTask.push(rows.$id);
+                  }
+                  Profile.updateTask($scope.compltedTask,Profile.currentUser.id);
+                }
+
+                $scope.$watchGroup(['totalTask','compltedTask'],function(){
+                  $scope.CompleteTaskList = [];
+                  $scope.incompleteTaskList=[];
+                  $scope.totalTask.$loaded().then(function(){
+                    console.log("task VAlue changed");
+                      console.log($scope.totalTask);
+                    angular.forEach($scope.totalTask,function(key,value){
+                        console.log(key.$id);
+                        if($scope.compltedTask.indexOf(key.$id)<0){
+                          $scope.incompleteTaskList.push(key);
+                        }
+                        else {
+                          $scope.CompleteTaskList.push(key);
+
+                        }
+                         console.log("seperation task");
+                          console.log($scope.CompleteTaskList);
+                          console.log($scope.incompleteTaskList);
+                    })
+
+                  })
+
+                });
+
            $scope.current =        60;
            $scope.max =            100;
            $scope.offset =         0;
@@ -150,6 +175,7 @@ $state.go("dashboard.status");
                $scope.time = getPadded(hours) + ':' + getPadded(minutes) + ':' + getPadded(seconds);
            }, 1000);
 }])
+
 .controller('createTaskController',['$scope','fireFactory','Task',function($scope,fireFactory,Task){
 $scope.Task={};
 $scope.task_option =["mandatory","additional","others"];

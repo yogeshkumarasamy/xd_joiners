@@ -102,7 +102,7 @@
 
   <input type ="text" ng-model = "searchTaskName" placeholder = "Search For Task" class="task-search" >
 <div class = "cardContainer">
-  <div class="card" ng-repeat = "(key , rows) in totalTask | filter : searchTaskName | filter : taskCategory"   >
+  <div class="card" ng-repeat = "(key , rows) in incompleteTaskList | filter : searchTaskName | filter : taskCategory"   >
   <div  ng-hide="rows.hide" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
   <div class="card-block {{rows.category }}" >
   <h4 class="card-title">{{rows.name }}</h4>

@@ -21,6 +21,7 @@ xdapp.config(function($stateProvider, $urlRouterProvider) {
             url: '/dashboard',
             templateUrl: 'template/dashboard/dashboard.html',
             controller : 'DashController',
+            redirectTo : 'dashboard.status'
 
         })
         .state('dashboard.status', {
