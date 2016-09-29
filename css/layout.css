@@ -248,6 +248,7 @@ a.rounded_button span.glyphicon.glyphicon-ok{
     padding-right: 40px;
 }
 
+
 /* task_list css */
 .head {
     background-color: lightgrey;
@@ -273,4 +274,12 @@ a.rounded_button span.glyphicon.glyphicon-ok{
     padding: 10px;
 }
 
+
+.compltedTaskContainer {
+    clear: both;
+    margin-top: 10px;
+}
+a.rounded_button span.glyphicon.glyphicon-remove {
+    margin: 7px;
+}
 

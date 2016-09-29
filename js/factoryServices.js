@@ -8,6 +8,7 @@ xdapp.factory("fireFactory",['$firebaseObject', '$firebaseAuth','$firebaseArray'
 
       }
 }])
+
 .factory('Profile',['$firebaseObject',function($firebaseObject){
   return {
     currentUser :{},
@@ -29,12 +30,15 @@ xdapp.factory("fireFactory",['$firebaseObject', '$firebaseAuth','$firebaseArray'
   }
 
 }])
+
 .factory('Task',['$firebaseObject','$firebaseArray',function($firebaseObject,$firebaseArray){
 
   return{
     getTask : function (){
       return $firebaseArray(db_ref.child('taskList'));
     },
+    CompleteTaskList : [],
+    incompleteTaskList : [],
 
     pushTask : function(data){
        var id;
