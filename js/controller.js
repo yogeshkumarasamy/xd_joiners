@@ -5,21 +5,21 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
   $scope.usrAuth = function(){
 
     try{
-    console.log("auth USer");
-    console.log($scope.usr.Name+$scope.usr.Pwd);
+    // console.log("auth USer");
+    // console.log($scope.usr.Name+$scope.usr.Pwd);
     var authObj = fireFactory.authRef();
     authObj.$signInWithEmailAndPassword($scope.usr.Name,$scope.usr.Pwd)
     .then(function(user){
-       console.log("sigin in success as " + $scope.usr.Name);
+       // console.log("sigin in success as " + $scope.usr.Name);
        $location.path("/dashboard/status");
-       console.log(user);
+       // console.log(user);
        Profile.currentUser = user.uid;
     }).catch(function(error){
     })
   }
 
     catch(error){
-     console.log( error);
+     // console.log( error);
     };
 
   }
@@ -33,7 +33,7 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
     var authObj = fireFactory.authRef();
 
     $scope.registerUser = function() {
-          console.log($scope.user.email +"pwd" + $scope.user.pwd);
+          // console.log($scope.user.email +"pwd" + $scope.user.pwd);
       try{
       authObj.$createUserWithEmailAndPassword($scope.user.email,$scope.user.pwd)
        .then(function(response){
@@ -46,7 +46,7 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
            })
          }
         catch(error) {
-            console.log(error);
+            // console.log(error);
           $scope.regError = error.message;
             };
     }
@@ -75,7 +75,8 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
     $scope.incompleteTaskList=[];
     $scope.taskCategory = "mandatory";
     $scope.totalTask =[];
-
+    $scope.incompltedTask = [];
+    // $scope.incompltedTask = Profile.currentUser.Completed === undefined ? [] :Profile.currentUser.Completed;
     $scope.totalTask = Task.getTask();
       $scope.userProfile = Profile.getProfile(response.uid);
       Profile.currentUser =  $scope.userProfile;
@@ -84,26 +85,45 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
       });
     });
                 $scope.pushUserTask = function(rows){
-                  rows.hide = true;
+                  rows.compHide = true;
+                  rows.incompHide = false;
+
                   if($scope.compltedTask.indexOf(rows.$id) < 0){
                       $scope.compltedTask.push(rows.$id);
                       Task.CompleteTaskList.push(rows);
                   }
                   Profile.updateTask($scope.compltedTask,Profile.currentUser.id);
-                  var index =   Task.incompleteTaskList.indexOf(rows.$id);
-
-                    $scope.CompleteTaskList = Task.CompleteTaskList;
                 }
+
+                $scope.removeUserTask = function(row){
+
+                  // console.log("888888888888888");
+                    row.compHide = false;
+                    row.incompHide = true;
+                // console.log();
+
+                                  if($scope.incompltedTask.indexOf(row.$id) < 0){
+                                      $scope.incompltedTask.push(row.$id);
+                                      Task.incompleteTaskList.push(row);
+                                  }
+                                  var elemId = Profile.currentUser.Completed.indexOf(row.$id);
+                                  // console.log(elemId);
+                  Profile.removeTask(elemId,Profile.currentUser.id);
+
+
+
+                }
+
 
                 $scope.$watch('totalTask',function(){
                   $scope.CompleteTaskList = [];
                   $scope.incompleteTaskList=[];
                  try{
                   $scope.totalTask.$loaded().then(function(){
-                    console.log("task VAlue changed");
-                      console.log($scope.totalTask);
+                    // console.log("task VAlue changed");
+                      // console.log($scope.totalTask);
                     angular.forEach($scope.totalTask,function(key,value){
-                        console.log(key.$id);
+                        // console.log(key.$id);
                         if($scope.compltedTask.indexOf(key.$id)<0){
                           $scope.incompleteTaskList.push(key);
                           Task.incompleteTaskList =   $scope.incompleteTaskList;
@@ -113,9 +133,9 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
                           Task.CompleteTaskList =     $scope.CompleteTaskList;
 
                         }
-                         console.log("seperation task");
-                          console.log(Task.CompleteTaskList);
-                          console.log(Task.incompleteTaskList);
+                         // console.log("seperation task");
+                          // console.log(Task.CompleteTaskList);
+                          // console.log(Task.incompleteTaskList);
                     })
 
                   })
@@ -200,14 +220,14 @@ $scope.feildReset = function(){
   $scope.Task.category = $scope.task_option[0];
 }
   $scope.createTask = function() {
-      console.log("createTask");
-      console.log($scope.Task);
+      // console.log("createTask");
+      // console.log($scope.Task);
     try{
        Task.pushTask($scope.Task);
         $scope.feildReset();
        }
       catch(error) {
-          console.log(error);
+          // console.log(error);
           };
   }
 

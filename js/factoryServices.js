@@ -26,6 +26,15 @@ xdapp.factory("fireFactory",['$firebaseObject', '$firebaseAuth','$firebaseArray'
       this.userElement.set(taskId);
       console.log("update Task");
 
+
+    },
+    removeTask : function(taskId,UserId){
+      this.userElement = firebase.database().ref('/userBase/'+ UserId + '/Completed/'+taskId);
+      console.log(taskId +'----'+UserId);
+      console.log(this.userElement);
+      this.userElement.set(null);
+      console.log("update Task");
+
     }
   }
 
