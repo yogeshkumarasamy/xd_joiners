@@ -162,28 +162,6 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
            $scope.currentAnimation = 'easeOutCubic';
            $scope.animationDelay = 0;
            $scope.animations = [];
-
-           angular.forEach(roundProgressService.animations, function(value, key){
-               $scope.animations.push(key);
-           });
-
-           $scope.getColor = function(){
-               return $scope.gradient ? 'url(#gradient)' : $scope.currentColor;
-           };
-
-           $scope.showPreciseCurrent = function(amount){
-               $timeout(function(){
-                   if(amount <= 0){
-                       $scope.preciseCurrent = $scope.current;
-                   }else{
-                       var math = $window.Math;
-                       $scope.preciseCurrent = math.min(math.round(amount), $scope.max);
-                   }
-               });
-           };
-           var getPadded = function(val){
-               return val < 10 ? ('0' + val) : val;
-           };
            $scope.getStyle = function(){
                var transform = ($scope.isSemi ? '' : 'translateY(-50%) ') + 'translateX(-50%)';
                return {
@@ -196,17 +174,7 @@ xdapp.controller('loginController', ['$scope','fireFactory', '$http','$location'
                    'font-size': $scope.radius/6 + 'px'
                };
            };
-           $interval(function(){
-               var date = new Date();
-               var hours = date.getHours();
-               var minutes = date.getMinutes();
-               var seconds = date.getSeconds();
 
-               $scope.hours = hours;
-               $scope.minutes = minutes;
-               $scope.seconds = seconds;
-               $scope.time = getPadded(hours) + ':' + getPadded(minutes) + ':' + getPadded(seconds);
-           }, 1000);
 /* Dial Plugin - Need to reform  ================================================================= */
 
 }])
