@@ -101,6 +101,7 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
             try {
                 $scope.totalTask.$loaded().then(function() {
                     angular.forEach($scope.totalTask, function(key, value) {
+                        var index = vm.compltedTask.indexOf(key.$id);
                         if (vm.compltedTask.indexOf(key.$id) < 0) {
                             vm.incompleteTaskList.push(key);
                             Task.incompleteTaskList = vm.incompleteTaskList;
