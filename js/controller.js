@@ -66,6 +66,7 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
         vm.CompleteTaskList = [];
         vm.incompleteTaskList = [];
         vm.taskCategory = "mandatory";
+        vm.TaskCount = {};
         $scope.totalTask = Task.getTask();
         vm.auth = fireFactory.authRef();
         Profile.currentUser = vm.userProfile;
@@ -78,6 +79,14 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
         vm.pushUserTask = function(rows) {
             rows.compHide = true;
             rows.incompHide = false;
+            if (rows.category == "mandatory"){
+              vm.TaskCount.CompMandatory = vm.TaskCount.CompMandatory + 1;
+             } else if(rows.category == "additional"){
+               vm.TaskCount.CompAdditional = vm.TaskCount.CompAdditional + 1;
+             } else if(rows.category == "others"){
+                vm.TaskCount.CompOthers = vm.TaskCount.CompOthers + 1;
+             }
+
             if (vm.compltedTask.indexOf(rows.$id) < 0) {
                 vm.compltedTask.push(rows.$id);
                 Task.CompleteTaskList.push(rows);
@@ -87,6 +96,14 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
         vm.removeUserTask = function(row) {
             row.compHide = false;
             row.incompHide = true;
+            if (row.category == "mandatory"){
+              vm.TaskCount.CompMandatory = vm.TaskCount.CompMandatory - 1;
+             } else if(row.category == "additional"){
+               vm.TaskCount.CompAdditional = vm.TaskCount.CompAdditional - 1;
+             } else if(row.category == "others"){
+                vm.TaskCount.CompOthers = vm.TaskCount.CompOthers - 1;
+             }
+
             if (vm.incompltedTask.indexOf(row.$id) < 0) {
                 vm.incompltedTask.push(row.$id);
                 Task.incompleteTaskList.push(row);
@@ -98,16 +115,38 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
         $scope.$watch('totalTask', function() {
             vm.CompleteTaskList = [];
             vm.incompleteTaskList = [];
+            vm.TaskCount.totalMandatory =0;
+            vm.TaskCount.totalAdditional =0;
+            vm.TaskCount.totalOthers =0;
+            vm.TaskCount.CompMandatory =0;
+            vm.TaskCount.CompAdditional =0;
+            vm.TaskCount.CompOthers =0;
             try {
                 $scope.totalTask.$loaded().then(function() {
                     angular.forEach($scope.totalTask, function(key, value) {
-                        var index = vm.compltedTask.indexOf(key.$id);
+
+                      if (key.category == "mandatory"){
+                        vm.TaskCount.totalMandatory = vm.TaskCount.totalMandatory + 1;
+                       } else if(key.category == "additional"){
+                         vm.TaskCount.totalAdditional = vm.TaskCount.totalAdditional + 1;
+                       } else if(key.category == "others"){
+                          vm.TaskCount.totalOthers = vm.TaskCount.totalOthers + 1;
+                       }
+
                         if (vm.compltedTask.indexOf(key.$id) < 0) {
                             vm.incompleteTaskList.push(key);
                             Task.incompleteTaskList = vm.incompleteTaskList;
                         } else {
                             vm.CompleteTaskList.push(key);
                             Task.CompleteTaskList = vm.CompleteTaskList;
+                            if (key.category == "mandatory"){
+                              vm.TaskCount.CompMandatory = vm.TaskCount.CompMandatory + 1;
+                             } else if(key.category == "additional"){
+                               vm.TaskCount.CompAdditional = vm.TaskCount.CompAdditional + 1;
+                             } else if(key.category == "others"){
+                                vm.TaskCount.CompOthers = vm.TaskCount.CompOthers + 1;
+                             }
+
                         }
                     })
                 })

@@ -1,8 +1,8 @@
 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 dash-status-card">
     <h4>Mandatory Task</h4>
     <div class="progress-wrapper">
-        <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}/{{ max }}</div>
-        <round-progress max="max" current="current" color="#ff0000" bgcolor="{{ bgColor }}" radius="{{ radius }}" semi="isSemi" rounded="rounded" stroke="{{ stroke }}" clockwise="clockwise" responsive="responsive" duration="{{ duration }}" animation="{{ currentAnimation }}"
+        <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || status.TaskCount.CompMandatory }}/{{ status.TaskCount.totalMandatory }}</div>
+        <round-progress max="status.TaskCount.totalMandatory" current="status.TaskCount.CompMandatory" color="#ff0000" bgcolor="{{ bgColor }}" radius="{{ radius }}" semi="isSemi" rounded="rounded" stroke="{{ stroke }}" clockwise="clockwise" responsive="responsive" duration="{{ duration }}" animation="{{ currentAnimation }}"
             offset="{{ offset }}" animation-delay="{{ animationDelay }}" on-render="showPreciseCurrent">
             <svg>
               <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
@@ -16,8 +16,8 @@
 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 dash-status-card">
     <h4>Additional Task</h4>
     <div class="progress-wrapper">
-        <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}/{{ max }}</div>
-        <round-progress max="max" current="current" color="#F97705" bgcolor="{{ bgColor }}" radius="{{ radius }}" semi="isSemi" rounded="rounded" stroke="{{ stroke }}" clockwise="clockwise" responsive="responsive" duration="{{ duration }}" animation="{{ currentAnimation }}"
+        <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || status.TaskCount.CompAdditional }}/{{ status.TaskCount.totalAdditional }}</div>
+        <round-progress max="status.TaskCount.totalAdditional" current="status.TaskCount.CompAdditional" color="#F97705" bgcolor="{{ bgColor }}" radius="{{ radius }}" semi="isSemi" rounded="rounded" stroke="{{ stroke }}" clockwise="clockwise" responsive="responsive" duration="{{ duration }}" animation="{{ currentAnimation }}"
             offset="{{ offset }}" animation-delay="{{ animationDelay }}" on-render="showPreciseCurrent">
             <svg>
             <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
@@ -32,8 +32,8 @@
 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 dash-status-card">
     <h4>other Task</h4>
     <div class="progress-wrapper">
-        <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}/{{ max }}</div>
-        <round-progress max="max" current="current" color="rgb(69, 204, 206)" bgcolor="{{ bgColor }}" radius="{{ radius }}" semi="isSemi" rounded="rounded" stroke="{{ stroke }}" clockwise="clockwise" responsive="responsive" duration="{{ duration }}" animation="{{ currentAnimation }}"
+        <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || status.TaskCount.CompOthers }}/{{status.TaskCount.totalOthers }}</div>
+        <round-progress max="status.TaskCount.totalOthers" current="status.TaskCount.CompOthers" color="rgb(69, 204, 206)" bgcolor="{{ bgColor }}" radius="{{ radius }}" semi="isSemi" rounded="rounded" stroke="{{ stroke }}" clockwise="clockwise" responsive="responsive" duration="{{ duration }}" animation="{{ currentAnimation }}"
             offset="{{ offset }}" animation-delay="{{ animationDelay }}" on-render="showPreciseCurrent">
             <svg>
               <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">

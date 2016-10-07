@@ -1,4 +1,4 @@
-xdapp.directive("loginForm", [function() {
+xdapp.directive("circularDial", [function() {
     return {
 
     }
