@@ -55,8 +55,8 @@
     <input type="text" ng-model="status.searchTaskName" placeholder="Search For Task" class="task-search">
     <h2> inCompleted Task </h2>
     <div class="cardContainer">
-        <div class="card" ng-repeat="(key , rows) in status.incompleteTaskList | filter : status.searchTaskName | filter : status.taskCategory">
-            <div ng-hide="rows.compHide" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
+        <div ng-hide="rows.compHide" class="card" ng-repeat="(key , rows) in status.incompleteTaskList | filter : status.searchTaskName | filter : status.taskCategory">
+            <div  class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
                 <div class="card-block {{rows.category }}">
                     <h4 class="card-title">{{rows.name }}</h4>
                     <p class="card-text">{{rows.desc}}</p>
@@ -69,8 +69,8 @@
     <div class="compltedTaskContainer">
         <h2> Completed Task </h2>
         <div class="cardContainer">
-            <div class="card" ng-repeat="(key , row) in status.CompleteTaskList | filter : status.searchTaskName | filter : status.taskCategory">
-                <div ng-hide="row.incompHide" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
+            <div ng-hide="row.incompHide" class="card" ng-repeat="(key , row) in status.CompleteTaskList  | filter : status.searchTaskName | filter : status.taskCategory">
+                <div  class="col-xs-12 col-sm-6 col-md-4 col-lg-4 ">
                     <div class="card-block {{row.category }}">
                         <h4 class="card-title">{{row.name }}</h4>
                         <p class="card-text">{{row.desc}}</p>

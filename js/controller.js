@@ -56,8 +56,8 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
     }])
 
 .controller('statusController', ['$q', '$state', '$scope', '$interval', '$timeout', '$window', 'roundProgressService',
-    'fireFactory', 'Profile', 'Task',
-    function($q, $state, $scope, $interval, $timeout, $window, roundProgressService, fireFactory, Profile, Task) {
+    'fireFactory', 'Profile', 'Task', '$filter',
+    function($q, $state, $scope, $interval, $timeout, $window, roundProgressService, fireFactory, Profile, Task, $filter) {
         var vm = this;
         $scope.totalTask = [];
         vm.userProfile = {};
@@ -77,8 +77,7 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
             });
         });
         vm.pushUserTask = function(rows) {
-            rows.compHide = true;
-            rows.incompHide = false;
+
             if (rows.category == "mandatory"){
               vm.TaskCount.CompMandatory = vm.TaskCount.CompMandatory + 1;
              } else if(rows.category == "additional"){
@@ -86,16 +85,23 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
              } else if(rows.category == "others"){
                 vm.TaskCount.CompOthers = vm.TaskCount.CompOthers + 1;
              }
-
+             console.log("####");
+         console.log(vm.compltedTask);
             if (vm.compltedTask.indexOf(rows.$id) < 0) {
+              // rows.compHide = true;
+              // rows.incompHide = false;
+              console.log("inside function");
                 vm.compltedTask.push(rows.$id);
+                delete vm.incompltedTask[vm.incompltedTask.indexOf(rows.$id)];
                 Task.CompleteTaskList.push(rows);
+                delete  Task.incompleteTaskList [Task.incompleteTaskList.indexOf(rows)];
+                vm.CompleteTaskList = Task.CompleteTaskList;
+                vm.incompleteTaskList = Task.incompleteTaskList;
             }
             Profile.updateTask(vm.compltedTask, Profile.currentUser.id);
         }
         vm.removeUserTask = function(row) {
-            row.compHide = false;
-            row.incompHide = true;
+
             if (row.category == "mandatory"){
               vm.TaskCount.CompMandatory = vm.TaskCount.CompMandatory - 1;
              } else if(row.category == "additional"){
@@ -105,8 +111,14 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
              }
 
             if (vm.incompltedTask.indexOf(row.$id) < 0) {
+              // row.compHide = false;
+              // row.incompHide = true;
                 vm.incompltedTask.push(row.$id);
+                delete vm.compltedTask[vm.compltedTask.indexOf(row.$id)];
                 Task.incompleteTaskList.push(row);
+                delete  Task.CompleteTaskList [Task.CompleteTaskList.indexOf(row)];
+                vm.CompleteTaskList = Task.CompleteTaskList;
+                vm.incompleteTaskList = Task.incompleteTaskList;
             }
             vm.elemId = Profile.currentUser.Completed.indexOf(row.$id);
 
@@ -132,7 +144,8 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
                        } else if(key.category == "others"){
                           vm.TaskCount.totalOthers = vm.TaskCount.totalOthers + 1;
                        }
-
+                       console.log("Arraycheck");
+                       console.log(Array.isArray(vm.compltedTask));
                         if (vm.compltedTask.indexOf(key.$id) < 0) {
                             vm.incompleteTaskList.push(key);
                             Task.incompleteTaskList = vm.incompleteTaskList;
@@ -155,6 +168,9 @@ xdapp.controller('loginController', ['$scope', 'fireFactory', '$http', '$locatio
             }
         });
 
+          $scope.$watch('vm.CompleteTaskList', function() {
+            console.log("scope change");
+          });
         /* Dial Plugin - Need to reform  ================================================================= */
         $scope.current = 60;
         $scope.max = 100;
